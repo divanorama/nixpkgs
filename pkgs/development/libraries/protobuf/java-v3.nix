@@ -1,13 +1,13 @@
 { stdenv
 , fetchFromGitHub
 , autoreconfHook, zlib, gmock, buildPackages
-, version, sha256
+, version, sha256, dependencies-sha256
 , maven, protobuf
 , ...
 }:
 
 let
-mkProtobufDerivation = buildProtobuf: stdenv: stdenv.mkDerivation {
+mkProtobufDerivation = stdenv: stdenv.mkDerivation rec {
   pname = "protobuf-java";
   inherit version;
 
@@ -17,6 +17,22 @@ mkProtobufDerivation = buildProtobuf: stdenv: stdenv.mkDerivation {
     repo = "protobuf";
     rev = "v${version}";
     inherit sha256;
+  };
+  mavenFlags = "-Dprotoc2=${protobuf}/bin/protoc -DskipTests -pl core,util,lite";
+  fetched-maven-deps = stdenv.mkDerivation {
+    name = "hadoop-${version}-maven-deps";
+    inherit src patches postPatch nativeBuildInputs buildInputs;
+    buildPhase = ''
+      cd java
+      while mvn package -Dmaven.repo.local=$out/.m2 -Dmaven.wagon.rto=5000 ${mavenFlags}; [ $? = 1 ]; do
+        echo "timeout, restart maven to continue downloading"
+      done
+    '';
+    # keep only *.{pom,jar,xml,sha1,so,dll,dylib} and delete all ephemeral files with lastModified timestamps inside
+    installPhase = ''find $out/.m2 -type f -regex '.+\(\.lastUpdated\|resolver-status\.properties\|_remote\.repositories\)' -delete'';
+    outputHashAlgo = "sha256";
+    outputHashMode = "recursive";
+    outputHash = dependencies-sha256;
   };
 
   # mvn -Dprotoc= doesn't override ant runner plugin vars
@@ -37,7 +53,9 @@ mkProtobufDerivation = buildProtobuf: stdenv: stdenv.mkDerivation {
   buildPhase = ''
     cd java
     mkdir $TMPDIR/.m2
-    mvn -Dmaven.repo.local=$TMPDIR/.m2 -DskipTests -Dprotoc2=${protobuf}/bin/protoc package -pl core,util,lite
+    cp -dpR ${fetched-maven-deps}/.m2 $TMPDIR/
+    chmod +w -R $TMPDIR/.m2
+    mvn --offline -Dmaven.repo.local=$TMPDIR/.m2 ${mavenFlags} package
   '';
   installPhase = ''
     mkdir $out
@@ -47,7 +65,6 @@ mkProtobufDerivation = buildProtobuf: stdenv: stdenv.mkDerivation {
   nativeBuildInputs = [ maven protobuf ];
 
   buildInputs = [ zlib ];
-  configureFlags = if buildProtobuf == null then [] else [ "--with-protoc=${buildProtobuf}/bin/protoc" ];
 
   enableParallelBuilding = true;
 
@@ -69,6 +86,4 @@ mkProtobufDerivation = buildProtobuf: stdenv: stdenv.mkDerivation {
 
   passthru.version = version;
 };
-in mkProtobufDerivation(if (stdenv.buildPlatform != stdenv.hostPlatform)
-                        then (mkProtobufDerivation null buildPackages.stdenv)
-                        else null) stdenv
+in mkProtobufDerivation stdenv
