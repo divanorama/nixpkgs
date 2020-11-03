@@ -520,6 +520,10 @@ stdenv.mkDerivation rec {
     # Increasing memory during compilation might be necessary.
     # export BAZEL_JAVAC_OPTS="-J-Xmx2g -J-Xms200m"
 
+
+    mkdir -p ./bazel_src/derived/
+    cp -r ${distDir} ./bazel_src/derived/distdir
+
     # Since we're building bazel from git sources, we need to
     # provide protoc needed to generate some bootstrap sources
     mkdir -p ./bazel_src/derived/jars
