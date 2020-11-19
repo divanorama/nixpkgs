@@ -15,14 +15,6 @@
             "https://github.com/bazelbuild/stardoc/archive/1ef781ced3b1443dca3ed05dec1989eca1a4e1cd.tar.gz"
         ]
     },
-    "2d4c9528e0f453b5950eeaeac11d8d09f5a504d4.tar.gz": {
-        "name": "2d4c9528e0f453b5950eeaeac11d8d09f5a504d4.tar.gz",
-        "sha256": "c00ceec469dbcf7929972e3c79f20c14033824538038a554952f5c31d8832f96",
-        "urls": [
-            "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/archive/2d4c9528e0f453b5950eeaeac11d8d09f5a504d4.tar.gz",
-            "https://github.com/bazelbuild/bazel-skylib/archive/2d4c9528e0f453b5950eeaeac11d8d09f5a504d4.tar.gz"
-        ]
-    },
     "382d5afc60e05470c23e8de19b19fc5ad231e732.tar.gz": {
         "name": "382d5afc60e05470c23e8de19b19fc5ad231e732.tar.gz",
         "sha256": "7992217989f3156f8109931c1fc6db3434b7414957cb82371552377beaeb9d6c",
@@ -53,14 +45,6 @@
         "urls": [
             "https://mirror.bazel.build/github.com/bazelbuild/rules_proto/archive/7e4afce6fe62dbff0a4a03450143146f9f2d7488.tar.gz",
             "https://github.com/bazelbuild/rules_proto/archive/7e4afce6fe62dbff0a4a03450143146f9f2d7488.tar.gz"
-        ]
-    },
-    "8bd6cd75d03c01bb82561a96d9c1f9f7157b13d0.zip": {
-        "name": "8bd6cd75d03c01bb82561a96d9c1f9f7157b13d0.zip",
-        "sha256": "1d4dbbd1e1e9b57d40bb0ade51c9e882da7658d5bfbf22bbd15b68e7879d761f",
-        "urls": [
-            "https://mirror.bazel.build/github.com/bazelbuild/rules_cc/archive/8bd6cd75d03c01bb82561a96d9c1f9f7157b13d0.zip",
-            "https://github.com/bazelbuild/rules_cc/archive/8bd6cd75d03c01bb82561a96d9c1f9f7157b13d0.zip"
         ]
     },
     "aecba11114cf1fac5497aeb844b6966106de3eb6.tar.gz": {
@@ -96,6 +80,22 @@
             "https://mirror.bazel.build/bazel_android_tools/android_tools_pkg-0.19.0rc3.tar.gz"
         ]
     },
+    "b1c40e1de81913a3c40e5948f78719c28152486d.zip": {
+        "name": "b1c40e1de81913a3c40e5948f78719c28152486d.zip",
+        "sha256": "d0c573b94a6ef20ef6ff20154a23d0efcb409fb0e1ff0979cec318dfe42f0cdd",
+        "urls": [
+            "https://mirror.bazel.build/github.com/bazelbuild/rules_cc/archive/b1c40e1de81913a3c40e5948f78719c28152486d.zip",
+            "https://github.com/bazelbuild/rules_cc/archive/b1c40e1de81913a3c40e5948f78719c28152486d.zip"
+        ]
+    },
+    "bazel-skylib-1.0.3.tar.gz": {
+        "name": "bazel-skylib-1.0.3.tar.gz",
+        "sha256": "1c531376ac7e5a180e0237938a2536de0c54d93f5c278634818e0efc952dd56c",
+        "urls": [
+            "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.0.3/bazel-skylib-1.0.3.tar.gz",
+            "https://github.com/bazelbuild/bazel-skylib/releases/download/1.0.3/bazel-skylib-1.0.3.tar.gz"
+        ]
+    },
     "bazel-toolchains-3.1.0.tar.gz": {
         "name": "bazel-toolchains-3.1.0.tar.gz",
         "sha256": "726b5423e1c7a3866a3a6d68e7123b4a955e9fcbe912a51e0f737e6dab1d0af2",
@@ -123,11 +123,10 @@
         "patch_cmds_win": [
             "Add-Content -Path BUILD -Value \"`nexports_files([`\"WORKSPACE`\"], visibility = [`\"//visibility:public`\"])`n\" -Force"
         ],
-        "sha256": "c00ceec469dbcf7929972e3c79f20c14033824538038a554952f5c31d8832f96",
-        "strip_prefix": "bazel-skylib-2d4c9528e0f453b5950eeaeac11d8d09f5a504d4",
+        "sha256": "1c531376ac7e5a180e0237938a2536de0c54d93f5c278634818e0efc952dd56c",
         "urls": [
-            "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/archive/2d4c9528e0f453b5950eeaeac11d8d09f5a504d4.tar.gz",
-            "https://github.com/bazelbuild/bazel-skylib/archive/2d4c9528e0f453b5950eeaeac11d8d09f5a504d4.tar.gz"
+            "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.0.3/bazel-skylib-1.0.3.tar.gz",
+            "https://github.com/bazelbuild/bazel-skylib/releases/download/1.0.3/bazel-skylib-1.0.3.tar.gz"
         ]
     },
     "bazel_toolchains": {
@@ -190,10 +189,10 @@
     },
     "build_bazel_rules_nodejs": {
         "name": "build_bazel_rules_nodejs",
-        "sha256": "b6670f9f43faa66e3009488bbd909bc7bc46a5a9661a33f6bc578068d1837f37",
+        "sha256": "f2194102720e662dbf193546585d705e645314319554c6ce7e47d8b59f459e9c",
         "urls": [
-            "https://mirror.bazel.build/github.com/bazelbuild/rules_nodejs/releases/download/1.3.0/rules_nodejs-1.3.0.tar.gz",
-            "https://github.com/bazelbuild/rules_nodejs/releases/download/1.3.0/rules_nodejs-1.3.0.tar.gz"
+            "https://mirror.bazel.build/github.com/bazelbuild/rules_nodejs/releases/download/2.2.2/rules_nodejs-2.2.2.tar.gz",
+            "https://github.com/bazelbuild/rules_nodejs/releases/download/2.2.2/rules_nodejs-2.2.2.tar.gz"
         ]
     },
     "com_github_cares_cares": {
@@ -252,6 +251,7 @@
         "sha256": "f880ebeb2ccf0e47721526c10dd97469200e40b5f101a0d9774eb69efa0bd07a",
         "strip_prefix": "grpc-1.32.0",
         "urls": [
+            "https://mirror.bazel.build/github.com/grpc/grpc/archive/v1.32.0.tar.gz",
             "https://github.com/grpc/grpc/archive/v1.32.0.tar.gz"
         ]
     },
@@ -428,25 +428,25 @@
             "https://github.com/census-instrumentation/opencensus-cpp/archive/c9a4da319bc669a772928ffc55af4a61be1a1176.tar.gz"
         ]
     },
-    "java_tools_javac11_darwin-v10.2.zip": {
-        "name": "java_tools_javac11_darwin-v10.2.zip",
-        "sha256": "03caa49238dd040d4bdae0a730d5c4027a3739aabf8f2c6840a160ea41890626",
+    "java_tools_javac11_darwin-v10.4.zip": {
+        "name": "java_tools_javac11_darwin-v10.4.zip",
+        "sha256": "587a7bc34c95a217a941b01a5a1f8ee48114fbe87e05872a41b7e019e5297a8a",
         "urls": [
-            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.2/java_tools_javac11_darwin-v10.2.zip"
+            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.4/java_tools_javac11_darwin-v10.4.zip"
         ]
     },
-    "java_tools_javac11_linux-v10.2.zip": {
-        "name": "java_tools_javac11_linux-v10.2.zip",
-        "sha256": "55be249dfdaf09790004bb007f229437eb148a6633045dce1f6247dd04a92f6a",
+    "java_tools_javac11_linux-v10.4.zip": {
+        "name": "java_tools_javac11_linux-v10.4.zip",
+        "sha256": "7debb49457db2f10990f759b6984c6d4ccb4917a9a9fd402a6f224b5fb0e8e36",
         "urls": [
-            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.2/java_tools_javac11_linux-v10.2.zip"
+            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.4/java_tools_javac11_linux-v10.4.zip"
         ]
     },
-    "java_tools_javac11_windows-v10.2.zip": {
-        "name": "java_tools_javac11_windows-v10.2.zip",
-        "sha256": "007a376d7c58e73a8f91c5a7f74bf2e9d4bf2a530142bc74c8709a02f1f6cde3",
+    "java_tools_javac11_windows-v10.4.zip": {
+        "name": "java_tools_javac11_windows-v10.4.zip",
+        "sha256": "3a7d802ccefffa6ecf6e190aaae081cf27fc0275e2a8dad7d3a943c63a4d0edc",
         "urls": [
-            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.2/java_tools_javac11_windows-v10.2.zip"
+            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.4/java_tools_javac11_windows-v10.4.zip"
         ]
     },
     "java_tools_langtools_javac11": {
@@ -922,10 +922,10 @@
         "patch_cmds_win": [
             "Add-Content -Path BUILD -Value \"`nexports_files([`\"WORKSPACE`\"], visibility = [`\"//visibility:public`\"])`n\" -Force"
         ],
-        "sha256": "03caa49238dd040d4bdae0a730d5c4027a3739aabf8f2c6840a160ea41890626",
+        "sha256": "587a7bc34c95a217a941b01a5a1f8ee48114fbe87e05872a41b7e019e5297a8a",
         "urls": [
-            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.2/java_tools_javac11_darwin-v10.2.zip",
-            "https://github.com/bazelbuild/java_tools/releases/download/javac11_v10.2/java_tools_javac11_darwin-v10.2.zip"
+            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.4/java_tools_javac11_darwin-v10.4.zip",
+            "https://github.com/bazelbuild/java_tools/releases/download/javac11_v10.4/java_tools_javac11_darwin-v10.4.zip"
         ]
     },
     "remote_java_tools_javac11_test_darwin": {
@@ -938,9 +938,9 @@
         "patch_cmds_win": [
             "Add-Content -Path BUILD -Value \"`nexports_files([`\"WORKSPACE`\"], visibility = [`\"//visibility:public`\"])`n\" -Force"
         ],
-        "sha256": "03caa49238dd040d4bdae0a730d5c4027a3739aabf8f2c6840a160ea41890626",
+        "sha256": "587a7bc34c95a217a941b01a5a1f8ee48114fbe87e05872a41b7e019e5297a8a",
         "urls": [
-            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.2/java_tools_javac11_darwin-v10.2.zip"
+            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.4/java_tools_javac11_darwin-v10.4.zip"
         ]
     },
     "remote_java_tools_javac11_test_linux": {
@@ -953,9 +953,9 @@
         "patch_cmds_win": [
             "Add-Content -Path BUILD -Value \"`nexports_files([`\"WORKSPACE`\"], visibility = [`\"//visibility:public`\"])`n\" -Force"
         ],
-        "sha256": "55be249dfdaf09790004bb007f229437eb148a6633045dce1f6247dd04a92f6a",
+        "sha256": "7debb49457db2f10990f759b6984c6d4ccb4917a9a9fd402a6f224b5fb0e8e36",
         "urls": [
-            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.2/java_tools_javac11_linux-v10.2.zip"
+            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.4/java_tools_javac11_linux-v10.4.zip"
         ]
     },
     "remote_java_tools_javac11_test_windows": {
@@ -968,9 +968,9 @@
         "patch_cmds_win": [
             "Add-Content -Path BUILD -Value \"`nexports_files([`\"WORKSPACE`\"], visibility = [`\"//visibility:public`\"])`n\" -Force"
         ],
-        "sha256": "007a376d7c58e73a8f91c5a7f74bf2e9d4bf2a530142bc74c8709a02f1f6cde3",
+        "sha256": "3a7d802ccefffa6ecf6e190aaae081cf27fc0275e2a8dad7d3a943c63a4d0edc",
         "urls": [
-            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.2/java_tools_javac11_windows-v10.2.zip"
+            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.4/java_tools_javac11_windows-v10.4.zip"
         ]
     },
     "remote_java_tools_linux": {
@@ -993,10 +993,10 @@
         "patch_cmds_win": [
             "Add-Content -Path BUILD -Value \"`nexports_files([`\"WORKSPACE`\"], visibility = [`\"//visibility:public`\"])`n\" -Force"
         ],
-        "sha256": "55be249dfdaf09790004bb007f229437eb148a6633045dce1f6247dd04a92f6a",
+        "sha256": "7debb49457db2f10990f759b6984c6d4ccb4917a9a9fd402a6f224b5fb0e8e36",
         "urls": [
-            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.2/java_tools_javac11_linux-v10.2.zip",
-            "https://github.com/bazelbuild/java_tools/releases/download/javac11_v10.2/java_tools_javac11_linux-v10.2.zip"
+            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.4/java_tools_javac11_linux-v10.4.zip",
+            "https://github.com/bazelbuild/java_tools/releases/download/javac11_v10.4/java_tools_javac11_linux-v10.4.zip"
         ]
     },
     "remote_java_tools_windows": {
@@ -1019,10 +1019,10 @@
         "patch_cmds_win": [
             "Add-Content -Path BUILD -Value \"`nexports_files([`\"WORKSPACE`\"], visibility = [`\"//visibility:public`\"])`n\" -Force"
         ],
-        "sha256": "007a376d7c58e73a8f91c5a7f74bf2e9d4bf2a530142bc74c8709a02f1f6cde3",
+        "sha256": "3a7d802ccefffa6ecf6e190aaae081cf27fc0275e2a8dad7d3a943c63a4d0edc",
         "urls": [
-            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.2/java_tools_javac11_windows-v10.2.zip",
-            "https://github.com/bazelbuild/java_tools/releases/download/javac11_v10.2/java_tools_javac11_windows-v10.2.zip"
+            "https://mirror.bazel.build/bazel_java_tools/releases/javac11/v10.4/java_tools_javac11_windows-v10.4.zip",
+            "https://github.com/bazelbuild/java_tools/releases/download/javac11_v10.4/java_tools_javac11_windows-v10.4.zip"
         ]
     },
     "remotejdk11_linux": {
@@ -1300,11 +1300,11 @@
         "patch_cmds_win": [
             "Add-Content -Path BUILD -Value \"`nexports_files([`\"WORKSPACE`\"], visibility = [`\"//visibility:public`\"])`n\" -Force"
         ],
-        "sha256": "1d4dbbd1e1e9b57d40bb0ade51c9e882da7658d5bfbf22bbd15b68e7879d761f",
-        "strip_prefix": "rules_cc-8bd6cd75d03c01bb82561a96d9c1f9f7157b13d0",
+        "sha256": "d0c573b94a6ef20ef6ff20154a23d0efcb409fb0e1ff0979cec318dfe42f0cdd",
+        "strip_prefix": "rules_cc-b1c40e1de81913a3c40e5948f78719c28152486d",
         "urls": [
-            "https://mirror.bazel.build/github.com/bazelbuild/rules_cc/archive/8bd6cd75d03c01bb82561a96d9c1f9f7157b13d0.zip",
-            "https://github.com/bazelbuild/rules_cc/archive/8bd6cd75d03c01bb82561a96d9c1f9f7157b13d0.zip"
+            "https://mirror.bazel.build/github.com/bazelbuild/rules_cc/archive/b1c40e1de81913a3c40e5948f78719c28152486d.zip",
+            "https://github.com/bazelbuild/rules_cc/archive/b1c40e1de81913a3c40e5948f78719c28152486d.zip"
         ]
     },
     "rules_java": {
@@ -1324,12 +1324,12 @@
             "https://github.com/bazelbuild/rules_java/archive/7cf3cefd652008d0a64a419c34c13bdca6c8f178.zip"
         ]
     },
-    "rules_nodejs-1.3.0.tar.gz": {
-        "name": "rules_nodejs-1.3.0.tar.gz",
-        "sha256": "b6670f9f43faa66e3009488bbd909bc7bc46a5a9661a33f6bc578068d1837f37",
+    "rules_nodejs-2.2.2.tar.gz": {
+        "name": "rules_nodejs-2.2.2.tar.gz",
+        "sha256": "f2194102720e662dbf193546585d705e645314319554c6ce7e47d8b59f459e9c",
         "urls": [
-            "https://mirror.bazel.build/github.com/bazelbuild/rules_nodejs/releases/download/1.3.0/rules_nodejs-1.3.0.tar.gz",
-            "https://github.com/bazelbuild/rules_nodejs/releases/download/1.3.0/rules_nodejs-1.3.0.tar.gz"
+            "https://mirror.bazel.build/github.com/bazelbuild/rules_nodejs/releases/download/2.2.2/rules_nodejs-2.2.2.tar.gz",
+            "https://github.com/bazelbuild/rules_nodejs/releases/download/2.2.2/rules_nodejs-2.2.2.tar.gz"
         ]
     },
     "rules_pkg": {
@@ -1398,6 +1398,7 @@
         "name": "v1.32.0.tar.gz",
         "sha256": "f880ebeb2ccf0e47721526c10dd97469200e40b5f101a0d9774eb69efa0bd07a",
         "urls": [
+            "https://mirror.bazel.build/github.com/grpc/grpc/archive/v1.32.0.tar.gz",
             "https://github.com/grpc/grpc/archive/v1.32.0.tar.gz"
         ]
     },
