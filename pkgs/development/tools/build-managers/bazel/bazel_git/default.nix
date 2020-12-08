@@ -31,13 +31,15 @@
 
 let
   version = "4.9999";
-  commit = "37a429ad12b4c9e6a62dbae4881a1ff03b81ab40";
-  sourceRoot = "bazel-${commit}";
+  commit = "68564ecc8f96448bed4fba1b99e2ef6e04a01b53";
+  sourceRoot = "source";
   patchFlags = "-p1";
 
-  src = fetchurl {
-    url = "https://github.com/bazelbuild/bazel/archive/${commit}.zip";
-    sha256 = "0v0xf4s9gqm7hkmz54a7whx88vpbjd5w23dd0yqairn47a3cian7";
+  src = fetchFromGitHub {
+    owner = "bazelbuild";
+    repo = "bazel";
+    rev = commit;
+    sha256 = "0dc677d78gcp1lghk43aqrbam3bz78laddg14bf3fkab1zb2qxvz";
   };
 
   # Update with `eval $(nix-build -A bazel.updater)`,
@@ -57,8 +59,8 @@ let
       srcs.io_bazel_rules_sass
       srcs.platforms
       (if stdenv.hostPlatform.isDarwin
-       then srcs."java_tools_javac11_darwin-v10.4.zip"
-       else srcs."java_tools_javac11_linux-v10.4.zip")
+       then srcs."java_tools_javac11_darwin-v10.5.zip"
+       else srcs."java_tools_javac11_linux-v10.5.zip")
       srcs."coverage_output_generator-v2.5.zip"
       srcs.build_bazel_rules_nodejs
       srcs."android_tools_pkg-0.19.0rc3.tar.gz"
@@ -125,7 +127,7 @@ let
   remote_java_tools = stdenv.mkDerivation {
     name = "remote_java_tools_${system}";
 
-    src = srcDepsSet."java_tools_javac11_${system}-v10.4.zip";
+    src = srcDepsSet."java_tools_javac11_${system}-v10.5.zip";
 
     nativeBuildInputs = [ autoPatchelfHook unzip ];
     buildInputs = [ gcc-unwrapped ];
