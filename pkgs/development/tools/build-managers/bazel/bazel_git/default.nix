@@ -31,7 +31,7 @@
 
 let
   version = "4.9999";
-  commit = "68564ecc8f96448bed4fba1b99e2ef6e04a01b53";
+  commit = "e43825d0bef359f645e1cabf2164fd2db6ee4a35";
   sourceRoot = "source";
   patchFlags = "-p1";
 
@@ -39,7 +39,7 @@ let
     owner = "bazelbuild";
     repo = "bazel";
     rev = commit;
-    sha256 = "0dc677d78gcp1lghk43aqrbam3bz78laddg14bf3fkab1zb2qxvz";
+    sha256 = "0bwb0klgrbhm2dxj0db3da8p521nxss6m3prygvi6rgxlafq0x7w";
   };
 
   # Update with `eval $(nix-build -A bazel.updater)`,
