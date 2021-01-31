@@ -181,6 +181,9 @@ stdenv.mkDerivation rec {
     # argument if it's found to be an empty string.
     ../trim-last-argument-to-gcc-if-empty.patch
 
+    # remove thread local use from re2 dependency that fails to compile on Darwin
+    ./darwin_thread_local.patch
+
     # --experimental_strict_action_env (which may one day become the default
     # see bazelbuild/bazel#2574) hardcodes the default
     # action environment to a non hermetic value (e.g. "/usr/local/bin").

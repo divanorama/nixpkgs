@@ -1,0 +1,98 @@
+commit ad0a39fee8a06dc4c28edb6a394a8a292954e8cf
+Author: Dmitry Ivankov <divanorama@gmail.com>
+Date:   Mon Feb 1 00:00:42 2021 +0100
+
+    Workaround bazel 4.0.0 build on NixOS
+    
+    Remove thread local from re2 on Darwin
+
+diff --git a/WORKSPACE b/WORKSPACE
+index 0878e18507..1d912b5dc9 100644
+--- a/WORKSPACE
++++ b/WORKSPACE
+@@ -1148,7 +1148,7 @@ register_toolchains("//src/main/res:empty_rc_toolchain")
+ http_archive(
+     name = "com_github_grpc_grpc",
+     patch_args = ["-p1"],
+-    patches = ["//third_party/grpc:grpc_1.32.0.patch"],
++    patches = ["//third_party/grpc:grpc_1.32.0.patch", "//third_party/grpc:grpc_1.32.0_nixos.patch"],
+     sha256 = "f880ebeb2ccf0e47721526c10dd97469200e40b5f101a0d9774eb69efa0bd07a",
+     strip_prefix = "grpc-1.32.0",
+     urls = [
+diff --git a/third_party/grpc/BUILD b/third_party/grpc/BUILD
+index 3bd85ba6b3..125765074b 100644
+--- a/third_party/grpc/BUILD
++++ b/third_party/grpc/BUILD
+@@ -18,7 +18,7 @@ load("//tools/distributions:distribution_rules.bzl", "distrib_java_import", "dis
+ 
+ licenses(["notice"])  # Apache v2
+ 
+-exports_files(["grpc_1.32.0.patch"])
++exports_files(["grpc_1.32.0.patch", "grpc_1.32.0_nixos.patch"])
+ 
+ package(default_visibility = ["//visibility:public"])
+ 
+diff --git a/third_party/grpc/grpc_1.32.0_nixos.patch b/third_party/grpc/grpc_1.32.0_nixos.patch
+new file mode 100644
+index 0000000000..0930d35d06
+--- /dev/null
++++ b/third_party/grpc/grpc_1.32.0_nixos.patch
+@@ -0,0 +1,58 @@
++commit 46d384d476b9d1381498c7a91ac95a5c3f566611
++Author: Dmitry Ivankov <divanorama@gmail.com>
++Date:   Sun Jan 31 23:57:47 2021 +0100
++
++    Patch grpc v1.32.0 for Bazel build on Darwin NixOS
++    
++    Remove thread local use in re2 on darwin
++
++diff --git a/BUILD b/BUILD
++index d5e98d6e13..b2d71f69ac 100644
++--- a/BUILD
+++++ b/BUILD
++@@ -19,6 +19,7 @@ licenses(["notice"])
++ exports_files([
++     "LICENSE",
++     "etc/roots.pem",
+++    "re2_no_thread_local_darwin.patch",
++ ])
++ 
++ package(
++diff --git a/bazel/grpc_deps.bzl b/bazel/grpc_deps.bzl
++index 1f7794eb28..709ef3e564 100644
++--- a/bazel/grpc_deps.bzl
+++++ b/bazel/grpc_deps.bzl
++@@ -216,6 +216,8 @@ def grpc_deps():
++     if "com_github_google_re2" not in native.existing_rules():
++         http_archive(
++             name = "com_github_google_re2",
+++	    patch_args = ["-p1"],
+++	    patches = ["@com_github_grpc_grpc//:re2_no_thread_local_darwin.patch"],
++             sha256 = "9f385e146410a8150b6f4cb1a57eab7ec806ced48d427554b1e754877ff26c3e",
++             strip_prefix = "re2-aecba11114cf1fac5497aeb844b6966106de3eb6",
++             urls = [
++diff --git a/re2_no_thread_local_darwin.patch b/re2_no_thread_local_darwin.patch
++new file mode 100644
++index 0000000000..9016d29073
++--- /dev/null
+++++ b/re2_no_thread_local_darwin.patch
++@@ -0,0 +1,19 @@
+++commit d87478cb3b84eba23ae60aa45d89758c46802f99
+++Author: Dmitry Ivankov <divanorama@gmail.com>
+++Date:   Sun Jan 31 23:50:37 2021 +0100
+++
+++    Workaround bazel 4.0.0 build on Darwin on NixOS
+++
+++diff --git a/re2/re2.h b/re2/re2.h
+++index 32b2718..de66689 100644
+++--- a/re2/re2.h
++++++ b/re2/re2.h
+++@@ -956,7 +956,7 @@ namespace hooks {
+++ // of Apple platforms that aren't macOS. If an iOS application really needs
+++ // the context pointee someday, we can get more specific then...
+++ #define RE2_HAVE_THREAD_LOCAL
+++-#if defined(__APPLE__) && !TARGET_OS_OSX
++++#if defined(__APPLE__)
+++ #undef RE2_HAVE_THREAD_LOCAL
+++ #endif
+++ 
